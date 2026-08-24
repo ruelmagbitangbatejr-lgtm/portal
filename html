@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <!-- I'm linking the CSS directly here since it's a small project, 
+         no need to over-engineer with separate files for now -->
+    <style>
+        /* Basic reset, standard stuff */
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif; /* Switched to Segoe UI, looks a bit cleaner */
+            background-color: #f2f2f2;
+            color: #222;
+        }
+
+        header {
+            background-color: #3155b7;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Added a simple hover effect, nothing fancy */
+        nav a:hover { text-decoration: underline; }
+
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .welcome {
+            background-color: #e8f0ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 9px;
+            text-align: left;
+        }
+
+        button {
+            background-color: #3155b7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Note: Keep an eye on this hover color, might be too dark */
+        button:hover { background-color: #243f8d; }
+
+        .announcement, .message {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        input {
+            padding: 10px;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        #feedback { font-weight: bold; }
+
+        footer {
+            text-align: center;
+            background-color: #ddd;
+            padding: 15px;
+            margin-top: 30px;
+        }
+
+        /* Mobile responsiveness - messy but works */
+        @media (max-width: 750px) {
+            header { display: block; text-align: center; }
+            nav { margin-top: 15px; }
+            .cards { display: block; }
+            .card { margin-bottom: 20px; }
+            input { width: 100%; margin-right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Student Portal</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#profile">Profile</a>
+        <a href="#grades">Grades</a>
+        <a href="#schedule">Schedule</a>
+    </nav>
+</header>
+
+<main>
+    <section id="home" class="welcome">
+        <h2>Welcome, Student!</h2>
+        <p>View your profile, grades, and class schedule in one place.</p>
+    </section>
+
+    <section class="cards">
+        <div class="card" id="profile">
+            <h2>My Profile</h2>
+            <p><b>Name:</b> Ruel M Bate Jr</p>
+            <p><b>Course:</b> BSIT</p>
+            <p><b>Year Level:</b> 2nd Year</p>
+            <button onclick="showProfile()">View Profile</button>
+        </div>
+
+        <div class="card" id="grades">
+            <h2>My Grades</h2>
+            <table>
+                <tr><th>Subject</th><th>Grade</th></tr>
+                <tr><td>Subject 1</td><td>75</td></tr>
+                <tr><td>Subject 2</td><td>85</td></tr>
+                <tr><td>Subject 3</td><td>99</td></tr>
+            </table>
+            <button onclick="showGrades()">View Grades</button>
+        </div>
+
+        <div class="card" id="schedule">
+            <h2>My Schedule</h2>
+            <table>
+                <tr><th>Time</th><th>Subject</th></tr>
+                <tr><td>8:00 AM</td><td>Subject 1</td></tr>
+                <tr><td>9:00 AM</td><td>Subject 2</td></tr>
+                <tr><td>10:00 AM</td><td>Subject 3</td></tr>
+            </table>
+            <button onclick="showSchedule()">View Schedule</button>
+        </div>
+    </section>
+
+    <section class="announcement">
+        <h2>Announcements</h2>
+        <ul>
+            <li>You are officially enrolled.</li>
+            <li>Submit your school requirements.</li>
+            <li>Check your schedule before attending class.</li>
+        </ul>
+    </section>
+
+    <section class="message">
+        <h2>Quick Message</h2>
+        <!-- Maybe add a subject line later? -->
+        <input type="text" id="studentName" placeholder="Your Name">
+        <input type="text" id="messageText" placeholder="Your Message">
+        <button onclick="sendMessage()">Send Message</button>
+        <p id="feedback"></p>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Student Portal</p>
+</footer>
+
+<script>
+    // Keeping these functions simple for now. 
+    // TODO: Maybe make these modals instead of alerts later?
+    function showProfile() {
+        alert("Profile: Ruel M Bate Jr | BS IT | 2nd Year");
+    }
+
+    function showGrades() {
+        alert("Your grades are displayed in the My Grades section.");
+    }
+
+    function showSchedule() {
+        alert("Your class schedule is displayed in the My Schedule section.");
+    }
+
+    function sendMessage() {
+        // Grab values
+        var nameField = document.getElementById("studentName");
+        var msgField = document.getElementById("messageText");
+        var feedback = document.getElementById("feedback");
+
+        // Simple validation
+        if (nameField.value.trim() === "" || msgField.value.trim() === "") {
+            feedback.textContent = "Hey, please fill in both fields!";
+            feedback.style.color = "red"; // Changed to red, blue was confusing
+        } else {
+            // Success logic
+            feedback.textContent = "Message sent successfully!";
+            feedback.style.color = "green";
+            
+            // Clear inputs
+            nameField.value = "";
+            msgField.value = "";
+            
+            // I'll just leave this here for debugging purposes
+            console.log("Message sent by: " + nameField.value);
+        }
+    }
+</script>
+</body>
+</html>
